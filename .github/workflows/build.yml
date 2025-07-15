@@ -35,14 +35,23 @@ jobs:
             echo "No .deb file found. Packaging failed."
             exit 1
           fi
+
+          rm -rf Payload
           mkdir -p Payload
-          dpkg-deb -xv "$DEB" Payload
-          APP_DIR=$(find Payload -type d -name "*.app" | head -n 1)
-          if [ -z "$APP_DIR" ]; then
-            echo "No .app found inside .deb!"
+
+          dpkg-deb -xv "$DEB" tmpdeb
+          APP_PATH=$(find tmpdeb -type d -name "*.app" | head -n 1)
+
+          if [ -z "$APP_PATH" ]; then
+            echo "No .app bundle found in the extracted .deb"
             exit 1
           fi
-          zip -r ChatGPTLauncher.ipa Payload
+
+          mv "$APP_PATH" Payload/
+
+          cd Payload
+          zip -r ../ChatGPTLauncher.ipa .
+          cd ..
           mkdir -p output
           mv ChatGPTLauncher.ipa output/
 
