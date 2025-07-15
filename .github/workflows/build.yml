@@ -1,0 +1,36 @@
+name: Build IPA
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Theos (cross-platform build env)
+      uses: theos/theos-action@v1.0.1
+      with:
+        sdk: iphoneos
+
+    - name: Build the app with Theos
+      run: |
+        make clean
+        make
+
+    - name: Package as IPA
+      run: |
+        mkdir -p Payload
+        cp -r ./ChatGPTLauncher.app ./Payload/
+        zip -r ChatGPTLauncher.ipa Payload/
+
+    - name: Upload IPA Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ChatGPTLauncher
+        path: ChatGPTLauncher.ipa
