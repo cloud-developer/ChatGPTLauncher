@@ -49,9 +49,7 @@ jobs:
 
           mv "$APP_PATH" Payload/
 
-          cd Payload
-          zip -r ../ChatGPTLauncher.ipa .
-          cd ..
+          zip -r ChatGPTLauncher.ipa Payload
           mkdir -p output
           mv ChatGPTLauncher.ipa output/
 
