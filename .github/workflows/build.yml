@@ -26,7 +26,9 @@ jobs:
           make package
 
       - name: Upload IPA
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ChatGPTLauncher-IPA
           path: ./packages/*.ipa
+          if-no-files-found: error
+          retention-days: 7
