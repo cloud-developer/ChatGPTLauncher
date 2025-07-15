@@ -1,34 +1,48 @@
-name: Build TrollStore App
+name: Build IPA
 
 on:
   push:
-    branches: [main]
+    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: macos-latest
-
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+      - name: Checkout Repo
+        uses: actions/checkout@v4
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: |
-          brew install ldid
+          brew install ldid dpkg
           git clone --recursive https://github.com/theos/theos.git ~/theos
           echo 'export THEOS=~/theos' >> $GITHUB_ENV
 
-      - name: Build project
+      - name: Set Build Variables
+        run: |
+          echo "TARGET=iphone:clang:latest:latest" >> $GITHUB_ENV
+          echo "ARCHS=arm64" >> $GITHUB_ENV
+
+      - name: Build DEB
         run: |
           export THEOS=~/theos
-          export SDKVERSION=$(xcrun --sdk iphoneos --show-sdk-version)
-          export TARGET=iphone:clang:latest:latest
-          make package
+          make clean package
+
+      - name: Convert DEB to IPA
+        run: |
+          mkdir -p Payload
+          dpkg-deb -xv ./*.deb Payload
+          cd Payload/Applications || cd Payload/Library/MobileSubstrate/DynamicLibraries
+          appname=$(ls | grep .app | head -n 1)
+          cd ../..
+          zip -r ChatGPTLauncher.ipa Payload
+          mkdir -p output
+          mv ChatGPTLauncher.ipa output/
 
       - name: Upload IPA
         uses: actions/upload-artifact@v4
         with:
           name: ChatGPTLauncher-IPA
-          path: ./packages/*.ipa
+          path: output/ChatGPTLauncher.ipa
           if-no-files-found: error
           retention-days: 7
