@@ -14,7 +14,7 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Set up Theos (cross-platform build env)
-      uses: theos/theos-action@v1.0.1
+      uses: theos/theos-action@f34ac84e90e4960be76e8776b2dcbd5ac23f2a03
       with:
         sdk: iphoneos
 
