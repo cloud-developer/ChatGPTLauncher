@@ -1,36 +1,32 @@
-name: Build IPA
+name: Build TrollStore App
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout repo
+        uses: actions/checkout@v3
 
-    - name: Set up Theos (cross-platform build env)
-      uses: theos/theos-action@f34ac84e90e4960be76e8776b2dcbd5ac23f2a03
-      with:
-        sdk: iphoneos
+      - name: Install dependencies
+        run: |
+          brew install ldid
+          git clone --recursive https://github.com/theos/theos.git ~/theos
+          echo 'export THEOS=~/theos' >> $GITHUB_ENV
 
-    - name: Build the app with Theos
-      run: |
-        make clean
-        make
+      - name: Build project
+        run: |
+          export THEOS=~/theos
+          export SDKVERSION=$(xcrun --sdk iphoneos --show-sdk-version)
+          export TARGET=iphone:clang:latest:latest
+          make package
 
-    - name: Package as IPA
-      run: |
-        mkdir -p Payload
-        cp -r ./ChatGPTLauncher.app ./Payload/
-        zip -r ChatGPTLauncher.ipa Payload/
-
-    - name: Upload IPA Artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: ChatGPTLauncher
-        path: ChatGPTLauncher.ipa
+      - name: Upload IPA
+        uses: actions/upload-artifact@v3
+        with:
+          name: ChatGPTLauncher-IPA
+          path: ./packages/*.ipa
