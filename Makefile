@@ -6,5 +6,6 @@ TARGET = iphone:clang:latest:latest
 APPLICATION_NAME = ChatGPTLauncher
 ChatGPTLauncher_FILES = ChatGPTLauncher/main.m ChatGPTLauncher/AppDelegate.m ChatGPTLauncher/ViewController.m
 ChatGPTLauncher_FRAMEWORKS = UIKit WebKit
+ChatGPTLauncher_INFOPLIST = ChatGPTLauncher/Info.plist
 
 include $(THEOS_MAKE_PATH)/application.mk
