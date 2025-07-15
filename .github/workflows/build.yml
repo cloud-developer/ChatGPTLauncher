@@ -30,11 +30,18 @@ jobs:
 
       - name: Convert DEB to IPA
         run: |
+          export DEB=$(find . -name "*.deb" | head -n 1)
+          if [ -z "$DEB" ]; then
+            echo "No .deb file found. Packaging failed."
+            exit 1
+          fi
           mkdir -p Payload
-          dpkg-deb -xv ./*.deb Payload
-          cd Payload/Applications || cd Payload/Library/MobileSubstrate/DynamicLibraries
-          appname=$(ls | grep .app | head -n 1)
-          cd ../..
+          dpkg-deb -xv "$DEB" Payload
+          APP_DIR=$(find Payload -type d -name "*.app" | head -n 1)
+          if [ -z "$APP_DIR" ]; then
+            echo "No .app found inside .deb!"
+            exit 1
+          fi
           zip -r ChatGPTLauncher.ipa Payload
           mkdir -p output
           mv ChatGPTLauncher.ipa output/
