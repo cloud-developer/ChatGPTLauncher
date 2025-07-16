@@ -46,6 +46,9 @@ jobs:
             echo "No .app bundle found in the extracted .deb"
             exit 1
           fi
+          
+          echo "APP_PATH = $APP_PATH"
+          ls -l "$APP_PATH"
 
           mv "$APP_PATH" Payload/
 
