@@ -10,4 +10,5 @@ ChatGPTLauncher_INFOPLIST = ChatGPTLauncher/Info.plist
 ChatGPTLauncher_RESOURCE_FILES = ChatGPTLauncher/Info.plist
 ChatGPTLauncher_ICON = ChatGPTLauncher/icon.png
 
+
 include $(THEOS_MAKE_PATH)/application.mk
