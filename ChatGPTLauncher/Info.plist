@@ -5,9 +5,11 @@
     <key>CFBundleDisplayName</key>
     <string>ChatGPTLauncher</string>
     <key>CFBundleIdentifier</key>
-    <string>com.yourname.ChatGPTLauncher</string>
+    <string>com.caro.ChatGPTLauncher</string>
     <key>CFBundleVersion</key>
     <string>1.0</string>
+    <key>CFBundleIconFile</key>
+    <string>icon.png</string>
     <key>CFBundleExecutable</key>
     <string>ChatGPTLauncher</string>
     <key>UILaunchStoryboardName</key>
