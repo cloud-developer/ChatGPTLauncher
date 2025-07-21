@@ -63,3 +63,13 @@ jobs:
           path: output/ChatGPTLauncher.ipa
           if-no-files-found: error
           retention-days: 7
+
+      - name: Upload Release
+        uses: ncipollo/release-action@v1
+        with:
+          name: Rolling Release
+          tag: release
+          allowUpdates: true
+          body: These are automatically updated builds of the latest commit.
+          artifacts: output/ChatGPTLauncher.ipa
+          token: ${{ secrets.GITHUB_TOKEN }}
