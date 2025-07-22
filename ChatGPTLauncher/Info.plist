@@ -14,11 +14,28 @@
     <string>icon.png</string>
     <key>CFBundleExecutable</key>
     <string>ChatGPTLauncher</string>
+    <key>UILaunchStoryboardName</key>
+    <string></string>
     <key>UILaunchScreen</key>
     <dict>
         <key>UIColorName</key>
         <string>black</string>
     </dict>
+    <key>UILaunchImages</key>
+    <array>
+        <dict>
+            <key>UILaunchImageMinimumOSVersion</key>
+            <string>11.0</string>
+            <key>UILaunchImageName</key>
+            <string>LaunchImage-1242x2688@3x</string>
+            <key>UILaunchImageOrientation</key>
+            <string>Portrait</string>
+            <key>UILaunchImageSize</key>
+            <string>{414, 896}</string>
+            <key>UILaunchImageScale</key>
+            <string>3</string>
+        </dict>
+    </array>
     <key>LSRequiresIPhoneOS</key>
     <true/>
     <key>UIRequiredDeviceCapabilities</key>
