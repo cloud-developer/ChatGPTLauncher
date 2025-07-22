@@ -7,27 +7,20 @@
     <key>CFBundleIdentifier</key>
     <string>com.caro.ChatGPTLauncher</string>
     <key>CFBundleVersion</key>
-    <string>1.01</string>
+    <string>1.02</string>
     <key>CFBundleShortVersionString</key>
-    <string>1.01</string>
+    <string>1.02</string>
     <key>CFBundleIconFile</key>
     <string>icon.png</string>
     <key>CFBundleExecutable</key>
     <string>ChatGPTLauncher</string>
-    <key>UILaunchStoryboardName</key>
-    <string></string>
-    <key>UILaunchScreen</key>
-    <dict>
-        <key>UIColorName</key>
-        <string>black</string>
-    </dict>
     <key>UILaunchImages</key>
     <array>
         <dict>
             <key>UILaunchImageMinimumOSVersion</key>
             <string>11.0</string>
             <key>UILaunchImageName</key>
-            <string>LaunchImage@3x</string>
+            <string>LaunchImage</string>
             <key>UILaunchImageOrientation</key>
             <string>Portrait</string>
             <key>UILaunchImageSize</key>
