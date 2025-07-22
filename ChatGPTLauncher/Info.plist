@@ -14,21 +14,23 @@
     <string>icon.png</string>
     <key>CFBundleExecutable</key>
     <string>ChatGPTLauncher</string>
+
     <key>UILaunchImages</key>
     <array>
-        <dict>
-            <key>UILaunchImageMinimumOSVersion</key>
-            <string>11.0</string>
-            <key>UILaunchImageName</key>
-            <string>LaunchImage</string>
-            <key>UILaunchImageOrientation</key>
-            <string>Portrait</string>
-            <key>UILaunchImageSize</key>
-            <string>{414, 896}</string>
-            <key>UILaunchImageScale</key>
-            <string>3</string>
-        </dict>
+      <dict>
+        <key>UILaunchImageMinimumOSVersion</key>
+        <string>11.0</string>
+        <key>UILaunchImageName</key>
+        <string>LaunchImage</string> <!-- no @3x suffix here -->
+        <key>UILaunchImageOrientation</key>
+        <string>Portrait</string>
+        <key>UILaunchImageSize</key>
+        <string>{414, 896}</string> <!-- points size for iPhone 11 Pro Max -->
+        <key>UILaunchImageScale</key>
+        <string>3</string>
+      </dict>
     </array>
+
     <key>LSRequiresIPhoneOS</key>
     <true/>
     <key>UIRequiredDeviceCapabilities</key>
